@@ -12,28 +12,31 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-9">
-        <h5>La bibliothèque de Rabelais est fermée au public jusqu'à nouvel ordre. Mais, il vous est possible de réserver et retirer vos livres via notre service Biblio Drive !</h5>
+        <h6>La bibliothèque de Rabelais est fermée au public jusqu'à nouvel ordre. Mais, il vous est possible de réserver et retirer vos livres via notre service Biblio Drive !</h6>
         <br>
         <br>
-        <form action = "pageaccueil.php" method ="get">
-          <input type = "search" name = "terme">
-          <input type = "submit" name = "recherche" value = "Rechercher">
-        </form>
+        <nav class = "navbar navbar-dark bg-blue">
+        <div class= "group-input">
+          <form action = "lister_livre.php" method ="get">
+            <input type = "text" class="form-control" name = "terme">
+          <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">Envoyer</button>
+         
+          </form>  
+      </div>
+    </nav>
+        <?php include 'carrousel.php';?>
+      
+      </div>
+      
       </div>
       <div class="col-sm-3">
         <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
         <br>
         <br>
-        <h2> Se connecter </h2>
-        <form action="connexion.php" method="post">
-            Identifiant: <input type="text" name="pseudo" />
-            <br />
-            Mot de passe: <input type="password" name="mdp" />
-            <br />
-            <input type="submit" name="connexion" value="Connexion" />
-        </form>
-      </div>
+        <?php include 'authentification.php';?>
     </div>
   </div>
+  
 </body>
 </html> 
