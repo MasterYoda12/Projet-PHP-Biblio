@@ -40,10 +40,7 @@ echo '<div id="demo" class="carousel slide" data-bs-ride="carousel">
   </button>
 </div>
 
-<div class="container-fluid mt-3">
-    <br>
-  <h2>Carousel</h2>
-</div>
+
 
 
 
