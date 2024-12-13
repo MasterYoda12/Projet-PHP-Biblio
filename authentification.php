@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <body>
+<h2> Se connecter </h2>
 <?php
 if (!isset($_POST['connexion'])) { 
+  
 
-    echo '   
-<h2> Se connecter </h2>
-        <form action="authentification.php" method="post">
+     echo'   <form action="'.$_SERVER['PHP_SELF'].'" method="post">
             Identifiant: <input type="text" name="mel" />
            <br>
             Mot de passe: <input type="password" name="motdepasse" />
