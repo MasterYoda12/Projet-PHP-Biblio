@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -24,8 +22,7 @@ session_start();
             <input type = "text" class="form-control" name = "terme">
           <div class="input-group-btn">
               <button class="btn btn-default" type="submit">Envoyer</button>
-         
-          </form>  
+              <button class="btn btn-default" type="submit">Panier</button>          </form>  
       </div>
     </nav>
         <?php include 'carrousel.php';?>

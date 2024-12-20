@@ -28,17 +28,17 @@
     <?php
 $numero = $_GET["numero"];
     require_once('connexion.php');
-        $stmt = $connexion->prepare("SELECT prenom, nom, l.detail from auteur a inner join livre l on (a.noauteur = l.notauteur) where nolivre = :numero");
+        $stmt = $connexion->prepare("SELECT prenom, nom,l.isbn13, l.detail from auteur a inner join livre l on (a.noauteur = l.noauteur) where nolivre = :numero");
         $stmt->bindValue(":numero", $numero);
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $stmt->execute();
         while($enregistrement = $stmt->fetch())
         {
-            echo 'Auteur : ' .$enregistrement->prenom. ' ' .$enregistrement->nom.  '<br> ';
-            echo 'ISBN13 : ' .$enregistrement->isbn13. '<br>';
-            echo 'Résumé du livre <br> <br>';
-            echo ' '.$enregistrement->detail. ' ';
-        };
+          echo 'Auteur : ' .$enregistrement->prenom. ' ' .$enregistrement->nom.  '<br> ';
+          echo 'ISBN13 : ' .$enregistrement->isbn13. '<br>';
+          echo 'Résumé du livre <br> <br>';
+          echo ' '.$enregistrement->detail. ' ';
+        }
           
 ?>
  <?php
@@ -50,7 +50,7 @@ $numero = $_GET["numero"];
         $stmt->execute();
         while($enregistrement = $stmt->fetch())
         {
-            echo '<img src="covers/'.$enregistement->photo.'"alt="skibidi 2" class="d-block mx-auto" style="width:25%">';
+            echo '<img src="covers/'.$enregistrement->photo.'"alt="test" class="d-block mx-auto" style="width:25%">';
           }
         
           
@@ -58,14 +58,14 @@ $numero = $_GET["numero"];
       
       </div>
       
-      </div>
+      
       <div class="col-sm-3">
         <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
         <br>
         <br>
         <?php include 'authentification.php';?>
     </div>
-  </div>
+ 
   
 </body>
 </html> 
