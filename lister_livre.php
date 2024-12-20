@@ -51,7 +51,7 @@ $auteur = $_GET["terme"];
         <?php include 'authentification.php';?>
     </div>
   </div>
-  
+  salut à tous c'est david la farge COUCOUUUUUUUU
 </body>
 </html> 
 

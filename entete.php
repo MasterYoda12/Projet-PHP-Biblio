@@ -25,7 +25,8 @@
               <button class="btn btn-default" type="submit">Panier</button>          </form>  
       </div>
     </nav>
-        <?php include 'carrousel.php';?>
+        <?php include 'carrousel.php';
+        echo "<body style='background-color:green'>";?>
       
       </div>
       
