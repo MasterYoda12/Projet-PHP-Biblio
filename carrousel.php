@@ -22,12 +22,12 @@ echo '<div id="demo" class="carousel slide" data-bs-ride="carousel">
     while ($enregistement = $stmt->fetch() ) {
     if ( $x == 0 ) {
             echo '<div class="carousel-item active">
-            <img src="covers/'.$enregistement->photo.'" alt="Skibidi" class="d-block mx-auto" style="width:25%">
+            <img src="covers/'.$enregistement->photo.'" alt="Test1" class="d-block mx-auto" style="width:25%">
             </div>';
             $x += 1; 
         } else {
             echo '<div class="carousel-item">
-            <img src="covers/'.$enregistement->photo.'" alt="skibidi 2 " class="d-block mx-auto" style="width:25%">
+            <img src="covers/'.$enregistement->photo.'" alt="Test" class="d-block mx-auto" style="width:25%">
           </div>';
         }
     }

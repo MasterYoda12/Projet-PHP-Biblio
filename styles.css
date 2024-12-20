@@ -1,11 +1,3 @@
-/*img {
-    position: absolute;
-    right: 10px;
-    top: 8px;
-    max-width: 300px;
-
-}g*/
-
-.test {
-max-width : 100%;
+body {
+    background-color: rgb(110, 165, 96); /* Le fond de la page sera noir */
 }
