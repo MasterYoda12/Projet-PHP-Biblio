@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>Titre de la page</title>
+  <title>Titre de la page - Admin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="styles.css"/>
@@ -18,12 +18,12 @@
         réserver et retirer vos livres via notre service Biblio Drive !
       </h6>
       <br><br>
-      <?php include 'entete.php';?>
-      <?php
-      include 'carrousel.php';
-      echo "<body style='background-color:green'>";
-      ?>
-    </div>
+      <nav class="navbar navbar-dark bg-primary p-3">
+        <div class="input-group w-100">
+          <a class="btn btn-success ml-2" href="ajouter_livre.php">Ajouter un livre</a>
+          <a class="btn btn-info ml-2" href="creer_membre.php">Créer un membre</a>
+        </div>
+      </nav>
   </div>
   <div class="col-sm-3">
     <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
@@ -33,5 +33,3 @@
 </div>
 </body>
 </html>
-
-
