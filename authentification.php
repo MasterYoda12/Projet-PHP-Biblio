@@ -49,7 +49,7 @@ if (!isset($_POST['connexion'])) {
         echo '<p>Adresse: ' . $enregistrement->adresse . '</p>';
         echo '<p>Ville: ' . $enregistrement->ville . '</p>';
         echo '<p>Code Postal: ' . $enregistrement->codepostal . '</p>';
-        echo '<p>Profil: ' . $enregistrement->profil . '</p>';
+        echo '<p><h3>' . $enregistrement->profil . '<h3></p>';
         echo '</div>';
     } else {
         echo '<div class="alert alert-danger" role="alert">Echec à la connexion.</div>';
