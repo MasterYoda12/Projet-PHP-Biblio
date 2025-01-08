@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,36 +15,33 @@
           <br>
           <br>
           <nav class="navbar navbar-dark bg-blue">
-          <div class="group-input">
-          <form action="lister_livre.php" method="get">
-            <input type="text" class="form-control" name="terme">
-          <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">Envoyer</button>
-          </form>  
-      </div>
-    </nav>
-    <?php
-    
-    if (isset($_GET["terme"])) {
-        $auteur = $_GET["terme"];
-        require_once('connexion.php');
-        $stmt = $connexion->prepare("SELECT titre, anneeparution, nolivre FROM livre l INNER JOIN auteur a on (a.noauteur = l.noauteur) where nom like :auteur");
-        $stmt->bindValue(":auteur", '%' . $auteur . '%');
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
-        $stmt->execute();
-        while($enregistrement = $stmt->fetch()) {
-            echo "<h3><a href='http://localhost/biblio/detail.php?numero=".$enregistrement->nolivre."'>", $enregistrement->titre, " (", $enregistrement->anneeparution, ")</a></h3>";
-        }
-    } else {
-        echo 'Veuillez entrer un terme de recherche.';
-    }
-    ?>
+            <form class="d-flex w-100" action="lister_livre.php" method="get">
+              <input type="text" class="form-control me-2" name="terme" placeholder="Rechercher un auteur">
+              <button class="btn btn-primary" type="submit">Envoyer</button>
+            </form>
+          </nav>
+          <br>
+          <?php
+          if (isset($_GET["terme"])) {
+              $auteur = $_GET["terme"];
+              require_once('connexion.php');
+              $stmt = $connexion->prepare("SELECT titre, anneeparution, nolivre FROM livre l INNER JOIN auteur a on (a.noauteur = l.noauteur) where nom like :auteur");
+              $stmt->bindValue(":auteur", '%' . $auteur . '%');
+              $stmt->setFetchMode(PDO::FETCH_OBJ);
+              $stmt->execute();
+              while($enregistrement = $stmt->fetch()) {
+                  echo "<h3><a href='http://localhost/biblio/detail.php?numero=".$enregistrement->nolivre."'>", $enregistrement->titre, " (", $enregistrement->anneeparution, ")</a></h3>";
+              }
+          } else {
+              echo 'Veuillez entrer un terme de recherche.';
+          }
+          ?>
       </div>
       <div class="col-sm-3">
-    <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
-    <br><br>
-    <?php include 'authentification.php';?>
-  </div>
+        <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
+        <br><br>
+        <?php include 'authentification.php';?>
+      </div>
     </div>
   </div>
 </body>

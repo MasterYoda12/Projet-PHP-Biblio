@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -51,6 +54,9 @@ if (!isset($_POST['connexion'])) {
         echo '<p>Code Postal: ' . $enregistrement->codepostal . '</p>';
         echo '<p><h3>' . $enregistrement->profil . '<h3></p>';
         echo '</div>';
+        echo '<form action="deconnexion.php" method="post">';
+        echo '<button type="submit" class="btn btn-danger mt-3">Déconnexion</button>';
+        echo '</form>';
     } else {
         echo '<div class="alert alert-danger" role="alert">Echec à la connexion.</div>';
     }

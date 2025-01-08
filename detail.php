@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,49 +16,46 @@ session_start();
           <br>
           <br>
           <nav class="navbar navbar-dark bg-blue">
-          <div class="group-input">
-          <form action="lister_livre.php" method="get">
-            <input type="text" class="form-control" name="terme">
-          <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">Envoyer</button>
-          </form>  
-      </div>
-    </nav>
-    <?php
-  
-    if (isset($_GET["numero"])) {
-        $numero = $_GET["numero"];
-        require_once('connexion.php');
-        $stmt = $connexion->prepare("SELECT prenom, nom, l.isbn13, l.detail FROM auteur a INNER JOIN livre l ON a.noauteur = l.noauteur WHERE nolivre = :numero");
-        $stmt->bindValue(":numero", $numero);
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
-        $stmt->execute();
-        while($enregistrement = $stmt->fetch()) {
-            echo 'Auteur : ' . $enregistrement->prenom . ' ' . $enregistrement->nom . '<br>';
-            echo 'ISBN13 : ' . $enregistrement->isbn13 . '<br>';
-            echo 'Résumé du livre <br><br>';
-            echo $enregistrement->detail . '<br>';
-        }
-        if (isset($_SESSION['user_id'])) {
-            echo '<button class="btn btn-success">Emprunter</button>';
-        }
-        $stmt = $connexion->prepare("SELECT photo FROM livre WHERE nolivre = :numero");
-        $stmt->bindValue(":numero", $numero);
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
-        $stmt->execute();
-        while($enregistrement = $stmt->fetch()) {
-            echo '<img src="covers/' . $enregistrement->photo . '" alt="Couverture du livre" class="d-block mx-auto" style="width:25%">';
-        }
-    } else {
-        echo 'Numéro de livre non spécifié.';
-    }
-    ?>
+            <form class="d-flex w-100" action="lister_livre.php" method="get">
+              <input type="text" class="form-control me-2" name="terme" placeholder="Rechercher un auteur">
+              <button class="btn btn-primary" type="submit">Envoyer</button>
+            </form>
+          </nav>
+          <br>
+          <?php
+          if (isset($_GET["numero"])) {
+              $numero = $_GET["numero"];
+              require_once('connexion.php');
+              $stmt = $connexion->prepare("SELECT prenom, nom, l.isbn13, l.detail FROM auteur a INNER JOIN livre l ON a.noauteur = l.noauteur WHERE nolivre = :numero");
+              $stmt->bindValue(":numero", $numero);
+              $stmt->setFetchMode(PDO::FETCH_OBJ);
+              $stmt->execute();
+              while($enregistrement = $stmt->fetch()) {
+                  echo 'Auteur : ' . $enregistrement->prenom . ' ' . $enregistrement->nom . '<br>';
+                  echo 'ISBN13 : ' . $enregistrement->isbn13 . '<br>';
+                  echo 'Résumé du livre <br><br>';
+                  echo $enregistrement->detail . '<br>';
+              }
+              if (isset($_SESSION['user_id'])) {
+                  echo '<button class="btn btn-success">Emprunter</button>';
+              }
+              $stmt = $connexion->prepare("SELECT photo FROM livre WHERE nolivre = :numero");
+              $stmt->bindValue(":numero", $numero);
+              $stmt->setFetchMode(PDO::FETCH_OBJ);
+              $stmt->execute();
+              while($enregistrement = $stmt->fetch()) {
+                  echo '<img src="covers/' . $enregistrement->photo . '" alt="Couverture du livre" class="d-block mx-auto" style="width:25%">';
+              }
+          } else {
+              echo 'Numéro de livre non spécifié.';
+          }
+          ?>
       </div>
       <div class="col-sm-3">
-    <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
-    <br><br>
-    <?php include 'authentification.php';?>
-  </div>
+        <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
+        <br><br>
+        <?php include 'authentification.php';?>
+      </div>
     </div>
   </div>
 </body>
