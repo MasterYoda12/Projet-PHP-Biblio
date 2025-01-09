@@ -20,9 +20,9 @@ session_start();
 <div class="container">
 <?php
 
-if (!isset($_POST['connexion'])) { 
+if (!isset($_POST['connexion'])) {  // Si le formulaire n'a pas été soumis
     echo '<h2>Se connecter</h2>';
-    echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post" class="mb-3">
+    echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post" class="mb-3"> 
             <div class="mb-3">
               <label for="mel" class="form-label">Identifiant:</label>
               <input type="text" name="mel" class="form-control" id="mel" />
@@ -49,11 +49,11 @@ if (!isset($_POST['connexion'])) {
     $stmt->bindValue(":motdepasse", $motdepasse); 
     $stmt->setFetchMode(PDO::FETCH_OBJ);    
     $stmt->execute();
-    $enregistrement = $stmt->fetch(); 
-    if ($enregistrement) {
-        $_SESSION['loggedin'] = true;
-        echo '<div class="custom-border p-4 mt-4">';
-        echo '<p>Identifiant: ' . $enregistrement->mel . '</p>';
+    $enregistrement = $stmt->fetch();  // Récupère le premier enregistrement
+    if ($enregistrement) { // Si un enregistrement a été trouvé
+        $_SESSION['loggedin'] = true; // L'utilisateur est connecté
+        echo '<div class="custom-border p-4 mt-4">'; // Affiche les informations de l'utilisateur
+        echo '<p>Identifiant: ' . $enregistrement->mel . '</p>'; // Affiche l'identifiant
         echo '<p>Nom: ' . $enregistrement->nom . '</p>';
         echo '<p>Prénom: ' . $enregistrement->prenom . '</p>';
         echo '<p>Adresse: ' . $enregistrement->adresse . '</p>';
@@ -61,7 +61,7 @@ if (!isset($_POST['connexion'])) {
         echo '<p>Code Postal: ' . $enregistrement->codepostal . '</p>';
         echo '<p><h3>' . $enregistrement->profil . '<h3></p>';
         echo '</div>';
-        echo '<form action="deconnexion.php" method="post">';
+        echo '<form action="deconnexion.php" method="post">'; // Formulaire de déconnexion
         echo '<button type="submit" class="btn btn-danger mt-3">Déconnexion</button>';
         echo '</form>';
     } else {

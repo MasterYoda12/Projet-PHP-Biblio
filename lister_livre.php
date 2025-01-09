@@ -23,25 +23,27 @@
           </nav>
           <br>
           <?php
-          if (isset($_GET["terme"])) {
-              $auteur = $_GET["terme"];
-              require_once('connexion.php');
-              $stmt = $connexion->prepare("SELECT titre, anneeparution, nolivre FROM livre l INNER JOIN auteur a on (a.noauteur = l.noauteur) where nom like :auteur");
-              $stmt->bindValue(":auteur", '%' . $auteur . '%');
-              $stmt->setFetchMode(PDO::FETCH_OBJ);
-              $stmt->execute();
-              while($enregistrement = $stmt->fetch()) {
-                  echo "<h3><a href='http://localhost/biblio/detail.php?numero=".$enregistrement->nolivre."'>", $enregistrement->titre, " (", $enregistrement->anneeparution, ")</a></h3>";
+          if (isset($_GET["terme"])) { // Vérifie si un terme de recherche a été entrer
+              $auteur = $_GET["terme"]; // Récupère la valeur du champ de recherche
+              require_once('connexion.php'); // Charge le fichier de connexion à la base de données
+              $stmt = $connexion->prepare("SELECT titre, anneeparution, nolivre FROM livre l INNER JOIN auteur a on (a.noauteur = l.noauteur) where nom like :auteur"); 
+              $stmt->bindValue(":auteur", '%' . $auteur . '%'); // Lie le paramètre :auteur à la valeur de $auteur
+              $stmt->setFetchMode(PDO::FETCH_OBJ); // Définit le mode de récupération des résultats
+              $stmt->execute(); // Exécute la requête
+              while($enregistrement = $stmt->fetch()) { // Parcours les résultats
+                  // Affiche chaque livre sous forme de lien
+                  echo "<h3><a href='http://localhost/biblio/detail.php?numero=".$enregistrement->nolivre."'>", 
+                        $enregistrement->titre, " (", $enregistrement->anneeparution, ")</a></h3>";
               }
           } else {
-              echo 'Veuillez entrer un terme de recherche.';
+              echo 'Veuillez entrer un terme de recherche.'; 
           }
           ?>
       </div>
       <div class="col-sm-3">
-        <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
-        <br><br>
-        <?php include 'authentification.php';?>
+        <img src="biblio.jpg" width="300px" height="350px" alt="biblio"> >
+        <br><br> 
+        <?php include 'authentification.php';?> 
       </div>
     </div>
   </div>

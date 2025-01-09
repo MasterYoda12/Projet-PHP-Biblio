@@ -66,11 +66,11 @@
 </div>
       <?php
     
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          require_once 'connexion.php';
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+          require_once 'connexion.php'; 
 
-          $mel = $_POST['mel'];
-          $motdepasse = $_POST['motdepasse'];
+          $mel = $_POST['mel']; // Récupère la valeur du champ de recherche
+          $motdepasse = $_POST['motdepasse']; 
           $nom = $_POST['nom'];
           $prenom = $_POST['prenom'];
           $adresse = $_POST['adresse'];
@@ -78,15 +78,15 @@
           $codepostal = $_POST['codepostal'];
 
           $stmt = $connexion->prepare("INSERT INTO utilisateur (mel, motdepasse, nom, prenom, adresse, ville, codepostal, profil) VALUES (:mel, :motdepasse, :nom, :prenom, :adresse, :ville, :codepostal, 'client')");
-          $stmt->bindValue(':mel', $mel);
-          $stmt->bindValue(':motdepasse', $motdepasse);
+          $stmt->bindValue(':mel', $mel); // Lie le paramètre :mel à la valeur de $mel
+          $stmt->bindValue(':motdepasse', $motdepasse); // Lie le paramètre :motdepasse à la valeur de $motdepasse
           $stmt->bindValue(':nom', $nom);
           $stmt->bindValue(':prenom', $prenom);
           $stmt->bindValue(':adresse', $adresse);
           $stmt->bindValue(':ville', $ville);
           $stmt->bindValue(':codepostal', $codepostal);
 
-          if ($stmt->execute()) {
+          if ($stmt->execute()) { 
               echo '<div class="alert alert-success" role="alert">Utilisateur ajouté avec succès!</div>';
           } else {
               echo '<div class="alert alert-danger" role="alert">Erreur lors de l\'ajout de l\'utilisateur.</div>';

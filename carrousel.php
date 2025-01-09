@@ -18,13 +18,13 @@ echo '<div id="demo" class="carousel slide" data-bs-ride="carousel">
   
   <!-- The slideshow/carousel -->
   <div class="carousel-inner">';
-  $x = 0;
-    while ($enregistement = $stmt->fetch() ) {
-    if ( $x == 0 ) {
-            echo '<div class="carousel-item active">
+  $x = 0; // Variable pour savoir si c'est le premier élément ou non
+    while ($enregistement = $stmt->fetch() ) { // Parcours les résultats
+    if ( $x == 0 ) { // Si c'est le premier élément
+            echo '<div class="carousel-item active"> 
             <img src="covers/'.$enregistement->photo.'" alt="Test1" class="d-block mx-auto" style="width:25%">
             </div>';
-            $x += 1; 
+            $x += 1; // On incrémente la variable
         } else {
             echo '<div class="carousel-item">
             <img src="covers/'.$enregistement->photo.'" alt="Test" class="d-block mx-auto" style="width:25%">

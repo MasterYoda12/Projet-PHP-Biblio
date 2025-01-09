@@ -13,8 +13,8 @@
 <div class="container">
   <div class="row">
     <!-- Contenu principal -->
-    <div class="col-sm-9">
-      <h6>
+    <div class="col-sm-9"> <!-- Colonne principale (9/12) -->
+      <h6> 
         La bibliothèque de Rabelais est fermée au public jusqu'à nouvel ordre. Mais, il vous est possible de 
         réserver et retirer vos livres via notre service Biblio Drive !
       </h6>
@@ -26,7 +26,7 @@
       ?>
     </div>
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-3"> <!-- Colonne secondaire (3/12) -->
     <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
     <br><br>
     <?php include 'authentification.php';?>
