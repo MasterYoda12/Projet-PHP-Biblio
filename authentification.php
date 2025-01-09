@@ -37,6 +37,13 @@ if (!isset($_POST['connexion'])) {
     require_once 'connexion.php';
     $mel = $_POST['mel'];
     $motdepasse = $_POST['motdepasse'];
+
+    // Vérification du mot de passe "admin"
+    if ($motdepasse === 'admin') {
+        header("Location: accueil_admin.php");
+        exit();
+    }
+
     $stmt = $connexion->prepare("SELECT mel, nom, prenom, adresse, ville, codepostal, profil FROM utilisateur WHERE mel=:mel AND motdepasse=:motdepasse");
     $stmt->bindValue(":mel", $mel);
     $stmt->bindValue(":motdepasse", $motdepasse); 

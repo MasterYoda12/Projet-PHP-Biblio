@@ -31,71 +31,8 @@
       <?php include 'authentification.php';?>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <h2>Ajouter un utilisateur</h2>
-      <form action="ajouter_utilisateur.php" method="post">
-          <div class="mb-3">
-              <label for="mel" class="form-label">Email:</label>
-              <input type="email" class="form-control" id="mel" name="mel" required>
-          </div>
-          <div class="mb-3">
-              <label for="motdepasse" class="form-label">Mot de passe:</label>
-              <input type="password" class="form-control" id="motdepasse" name="motdepasse" required>
-          </div>
-          <div class="mb-3">
-              <label for="nom" class="form-label">Nom:</label>
-              <input type="text" class="form-control" id="nom" name="nom" required>
-          </div>
-          <div class="mb-3">
-              <label for="prenom" class="form-label">Prénom:</label>
-              <input type="text" class="form-control" id="prenom" name="prenom" required>
-          </div>
-          <div class="mb-3">
-              <label for="adresse" class="form-label">Adresse:</label>
-              <input type="text" class="form-control" id="adresse" name="adresse" required>
-          </div>
-          <div class="mb-3">
-              <label for="ville" class="form-label">Ville:</label>
-              <input type="text" class="form-control" id="ville" name="ville" required>
-          </div>
-          <div class="mb-3">
-              <label for="codepostal" class="form-label">Code Postal:</label>
-              <input type="text" class="form-control" id="codepostal" name="codepostal" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Créer un membre</button>
-      </form>
+  
 
-      <?php
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          require_once 'connexion.php';
-
-          $mel = $_POST['mel'];
-          $motdepasse = $_POST['motdepasse'];
-          $nom = $_POST['nom'];
-          $prenom = $_POST['prenom'];
-          $adresse = $_POST['adresse'];
-          $ville = $_POST['ville'];
-          $codepostal = $_POST['codepostal'];
-
-          $stmt = $connexion->prepare("INSERT INTO utilisateur (mel, motdepasse, nom, prenom, adresse, ville, codepostal) VALUES (:mel, :motdepasse, :nom, :prenom, :adresse, :ville, :codepostal)");
-          $stmt->bindValue(':mel', $mel);
-          $stmt->bindValue(':motdepasse', $motdepasse);
-          $stmt->bindValue(':nom', $nom);
-          $stmt->bindValue(':prenom', $prenom);
-          $stmt->bindValue(':adresse', $adresse);
-          $stmt->bindValue(':ville', $ville);
-          $stmt->bindValue(':codepostal', $codepostal);
-
-          if ($stmt->execute()) {
-              echo '<div class="alert alert-success" role="alert">Utilisateur ajouté avec succès!</div>';
-          } else {
-              echo '<div class="alert alert-danger" role="alert">Erreur lors de l\'ajout de l\'utilisateur.</div>';
-          }
-      }
-      ?>
-    </div>
-  </div>
 </div>
 </body>
 </html>
