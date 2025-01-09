@@ -43,59 +43,60 @@ $auteurs = $stmt->fetchAll();
 </head>
 <body>
 <div class="container">
-  <div class="row">
+<div class="row">
     <!-- Contenu principal -->
     <div class="col-sm-9">
-      <h6>
-        La bibliothèque de Rabelais est fermée au public jusqu'à nouvel ordre. Mais, il vous est possible de 
-        réserver et retirer vos livres via notre service Biblio Drive !
-      </h6>
-      <br><br>
-      <nav class="navbar navbar-dark bg-primary p-3">
-        <div class="input-group w-100">
-          <a class="btn btn-success ml-2" href="ajouter_livre.php">Ajouter un livre</a>
-          <a class="btn btn-info ml-2" href="creer_membre.php">Créer un membre</a>
-        </div>
-      </nav>
-      <br><br>
-      <h2>Ajouter un livre</h2>
-      <form action="ajouter_livre.php" method="post">
-        <div class="mb-3">
-          <label for="noauteur" class="form-label">Auteur:</label>
-          <select name="noauteur" class="form-control" id="noauteur" required>
-            <?php foreach ($auteurs as $auteur): ?>
-              <option value="<?= $auteur->noauteur ?>"><?= $auteur->prenom . ' ' . $auteur->nom ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="titre" class="form-label">Titre:</label>
-          <input type="text" name="titre" class="form-control" id="titre" required>
-        </div>
-        <div class="mb-3">
-          <label for="isbn13" class="form-label">ISBN13:</label>
-          <input type="text" name="isbn13" class="form-control" id="isbn13" required>
-        </div>
-        <div class="mb-3">
-          <label for="anneeparution" class="form-label">Année de parution:</label>
-          <input type="text" name="anneeparution" class="form-control" id="anneeparution" required>
-        </div>
-        <div class="mb-3">
-          <label for="detail" class="form-label">Résumé:</label>
-          <textarea name="detail" class="form-control" id="detail" rows="3" required></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="photo" class="form-label">Image:</label>
-          <input type="text" name="photo" class="form-control" id="photo" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
-      </form>
+        <h6>
+            La bibliothèque de Rabelais est fermée au public jusqu'à nouvel ordre. Mais, il vous est possible de 
+            réserver et retirer vos livres via notre service Biblio Drive !
+        </h6>
+        <br><br>
+        <nav class="navbar navbar-dark bg-primary p-3">
+            <div class="input-group w-100">
+                <a class="btn btn-success ml-2" href="ajouter_livre.php">Ajouter un livre</a>
+                <a class="btn btn-info ml-2" href="ajouter_utilisateur.php">Créer un membre</a>
+            </div>
+        </nav>
+        <br><br><br><br><br><br><br><br>
+        <h2>Ajouter un livre</h2>
+        <form action="ajouter_livre.php" method="post">
+            <div class="mb-3">
+                <select name="noauteur" class="form-control" id="noauteur">
+                    <?php
+                    require_once 'connexion.php';
+                    $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur");
+                    $stmt->execute();
+                    $auteurs = $stmt->fetchAll(PDO::FETCH_OBJ);
+                    foreach ($auteurs as $auteur) {
+                        echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre">
+            </div>
+            <div class="mb-3">
+                <input type="text" name="isbn13" class="form-control" id="isbn13" placeholder="ISBN13">
+            </div>
+            <div class="mb-3">
+                <input type="text" name="anneeparution" class="form-control" id="anneeparution" placeholder="Année de parution">
+            </div>
+            <div class="mb-3">
+                <textarea name="detail" class="form-control" id="detail" rows="3" placeholder="Résumé"></textarea>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="photo" class="form-control" id="photo" placeholder="Image">
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
     </div>
     <div class="col-sm-3">
-      <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
-      <br><br>
-      <?php include 'authentification.php';?>
+        <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
+        <br><br>
+        <?php include 'authentification.php';?>
     </div>
+</div>
   </div>
 </div>
 </body>

@@ -50,6 +50,7 @@
               echo 'Numéro de livre non spécifié.';
           }
           ?>
+          
       </div>
       <div class="col-sm-3">
         <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
@@ -58,5 +59,9 @@
       </div>
     </div>
   </div>
+  <form action="panier.php" method="post" style="position: fixed; bottom: 10px; left: 10px;">
+    <input type="hidden" name="nolivre" value="<?php echo $numero; ?>">
+    <button class="btn btn-success" type="submit">Emprunter</button>
+</form>
 </body>
 </html>

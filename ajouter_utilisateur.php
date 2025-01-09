@@ -28,45 +28,44 @@
     <div class="col-sm-3">
       <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
       <br><br>
-      <?php include 'authentification.php';?>
+
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <h2>Ajouter un utilisateur</h2>
-      <form action="ajouter_utilisateur.php" method="post">
-          <div class="mb-3">
-              <label for="mel" class="form-label">Email:</label>
-              <input type="email" class="form-control" id="mel" name="mel" required>
-          </div>
-          <div class="mb-3">
-              <label for="motdepasse" class="form-label">Mot de passe:</label>
-              <input type="password" class="form-control" id="motdepasse" name="motdepasse" required>
-          </div>
-          <div class="mb-3">
-              <label for="nom" class="form-label">Nom:</label>
-              <input type="text" class="form-control" id="nom" name="nom" required>
-          </div>
-          <div class="mb-3">
-              <label for="prenom" class="form-label">Prénom:</label>
-              <input type="text" class="form-control" id="prenom" name="prenom" required>
-          </div>
-          <div class="mb-3">
-              <label for="adresse" class="form-label">Adresse:</label>
-              <input type="text" class="form-control" id="adresse" name="adresse" required>
-          </div>
-          <div class="mb-3">
-              <label for="ville" class="form-label">Ville:</label>
-              <input type="text" class="form-control" id="ville" name="ville" required>
-          </div>
-          <div class="mb-3">
-              <label for="codepostal" class="form-label">Code Postal:</label>
-              <input type="text" class="form-control" id="codepostal" name="codepostal" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Créer un membre</button>
-      </form>
-
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+            <h2>Ajouter un utilisateur</h2>
+            <form action="ajouter_utilisateur.php" method="post">
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="mel" name="mel" placeholder="Email">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="motdepasse" name="motdepasse" placeholder="Mot de passe">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="ville" name="ville" placeholder="Ville">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="codepostal" name="codepostal" placeholder="Code Postal">
+                </div>
+                <button type="submit" class="btn btn-primary">Créer un membre</button>
+            </form>
+        </div>
+        <div class="col-sm-3">
+            <?php require_once 'authentification.php'; ?>
+        </div>
+</div>
       <?php
+    
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           require_once 'connexion.php';
 
