@@ -20,7 +20,8 @@
       </h6>
       <br><br>
       <?php include 'entete.php';?>
-      <h4> Dernière acquisition </h4>
+      <br>
+      <h4><p class="text-center"> Dernière acquisition</p> </h4> 
       <br>
       <?php
       include 'carrousel.php';
