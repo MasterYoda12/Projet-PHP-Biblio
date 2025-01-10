@@ -1,9 +1,9 @@
 <?php
 require_once('connexion.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $noauteur = $_POST['noauteur'];
-    $titre = $_POST['titre'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Si le formulaire a été soumis
+    $noauteur = $_POST['noauteur']; // Récupère la valeur du champ de recherche
+    $titre = $_POST['titre']; 
     $isbn13 = $_POST['isbn13'];
     $anneeparution = $_POST['anneeparution'];
     $detail = $_POST['detail'];
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dateajout = date('Y-m-d');
 
     $stmt = $connexion->prepare("INSERT INTO livre (noauteur, titre, isbn13, anneeparution, detail, photo, dateajout) VALUES (:noauteur, :titre, :isbn13, :anneeparution, :detail, :photo, :dateajout)");
-    $stmt->bindValue(':noauteur', $noauteur);
+    $stmt->bindValue(':noauteur', $noauteur); // Lie le paramètre :noauteur à la valeur de $noauteur
     $stmt->bindValue(':titre', $titre);
     $stmt->bindValue(':isbn13', $isbn13);
     $stmt->bindValue(':anneeparution', $anneeparution);
@@ -20,10 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindValue(':dateajout', $dateajout);
     $stmt->execute();
 
-    echo '<div class="alert alert-success" role="alert">Livre ajouté avec succès!</div>';
+    echo '<div class="alert alert-success" role="alert">Livre ajouté avec succès!</div>'; // Affiche un message de succès
 }
 
-$stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur");
+$stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur"); // Prépare la requête
 $stmt->setFetchMode(PDO::FETCH_OBJ); // On dit qu'on veut que le résultat soit un objet
 $stmt->execute();
 $auteurs = $stmt->fetchAll();
@@ -49,13 +49,13 @@ $auteurs = $stmt->fetchAll();
             réserver et retirer vos livres via notre service Biblio Drive !
         </h6>
         <br><br>
-        <nav class="navbar navbar-dark bg-primary p-3">
-            <div class="input-group w-100">
+        <nav class="navbar navbar-dark bg-primary p-3"> 
+            <div class="input-group w-100"> 
                 <a class="btn btn-success ml-2" href="ajouter_livre.php">Ajouter un livre</a>
                 <a class="btn btn-info ml-2" href="ajouter_utilisateur.php">Créer un membre</a>
             </div>
         </nav>
-        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br> 
         <h2>Ajouter un livre</h2>
         <form action="ajouter_livre.php" method="post">
             <div class="mb-3">
@@ -72,7 +72,7 @@ $auteurs = $stmt->fetchAll();
                 </select>
             </div>
             <div class="mb-3">
-                <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre">
+                <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre"> // Ajoutez un champ pour le titre du livre
             </div>
             <div class="mb-3">
                 <input type="text" name="isbn13" class="form-control" id="isbn13" placeholder="ISBN13">
