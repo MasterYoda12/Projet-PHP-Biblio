@@ -59,8 +59,14 @@
       </div>
     </div>
   </div>
-  <form action="panier.php" method="post" style="position: fixed; bottom: 10px; left: 10px;">
-    <button class="btn btn-success" type="submit">Emprunter</button> 
-</form>
+  <?php
+if (isset($_SESSION['loggedin']) && $_SESSION['profil'] == 'client') { // Si l'utilisateur est connecté et est un client
+    echo '<div style="position: fixed; bottom: 10px; left: 10px;"> 
+            <form action="panier.php" method="post">
+                <button type="submit" class="btn btn-success">Emprunter</button>
+            </form>
+          </div>';
+}
+?>
 </body>
 </html>

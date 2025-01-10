@@ -20,6 +20,8 @@
       </h6>
       <br><br>
       <?php include 'entete.php';?>
+      <h4> Dernière acquisition </h4>
+      <br>
       <?php
       include 'carrousel.php';
       echo "<body style='background-color:green'>";

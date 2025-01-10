@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $photo = $_POST['photo'];
     $dateajout = date('Y-m-d');
 
-    // Prepare the SQL statement
     $stmt = $connexion->prepare("INSERT INTO livre (noauteur, titre, isbn13, anneeparution, detail, photo, dateajout) VALUES (:noauteur, :titre, :isbn13, :anneeparution, :detail, :photo, :dateajout)");
     $stmt->bindValue(':noauteur', $noauteur);
     $stmt->bindValue(':titre', $titre);
@@ -24,9 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<div class="alert alert-success" role="alert">Livre ajouté avec succès!</div>';
 }
 
-// Fetch authors for the dropdown list
 $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur");
-$stmt->setFetchMode(PDO::FETCH_OBJ);
+$stmt->setFetchMode(PDO::FETCH_OBJ); // On dit qu'on veut que le résultat soit un objet
 $stmt->execute();
 $auteurs = $stmt->fetchAll();
 ?>
@@ -66,9 +64,9 @@ $auteurs = $stmt->fetchAll();
                     require_once 'connexion.php';
                     $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur");
                     $stmt->execute();
-                    $auteurs = $stmt->fetchAll(PDO::FETCH_OBJ);
-                    foreach ($auteurs as $auteur) {
-                        echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>";
+                    $auteurs = $stmt->fetchAll(PDO::FETCH_OBJ); // Récupère tous les résultats
+                    foreach ($auteurs as $auteur) { // Parcours les résultats
+                        echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>"; 
                     }
                     ?>
                 </select>
