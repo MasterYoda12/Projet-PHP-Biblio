@@ -18,9 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Si le formulaire a été soumis
     $stmt->bindValue(':detail', $detail);
     $stmt->bindValue(':photo', $photo);
     $stmt->bindValue(':dateajout', $dateajout);
-    $stmt->execute();
-
-    echo '<div class="alert alert-success" role="alert">Livre ajouté avec succès!</div>'; // Affiche un message de succès
+    
+    if ($stmt->execute()) { 
+        echo '<div class="alert alert-success" role="alert">Livre ajouté avec succès!</div>';
+    } else {
+        echo '<div class="alert alert-danger" role="alert">Erreur lors de l\'ajout du livre!.</div>';
+    }
 }
 
 $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur"); // Prépare la requête
@@ -72,7 +75,7 @@ $auteurs = $stmt->fetchAll();
                 </select>
             </div>
             <div class="mb-3">
-                <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre"> // Ajoutez un champ pour le titre du livre
+                <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre">
             </div>
             <div class="mb-3">
                 <input type="text" name="isbn13" class="form-control" id="isbn13" placeholder="ISBN13">
