@@ -66,13 +66,13 @@
 </div>
       <?php
     
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
           require_once 'connexion.php'; 
 
           $mel = $_POST['mel']; // Récupère la valeur du champ de recherche
-          $motdepasse = $_POST['motdepasse']; 
-          $nom = $_POST['nom'];
-          $prenom = $_POST['prenom'];
+          $motdepasse = $_POST['motdepasse'];  
+          $nom = $_POST['nom']; 
+          $prenom = $_POST['prenom']; 
           $adresse = $_POST['adresse'];
           $ville = $_POST['ville'];
           $codepostal = $_POST['codepostal'];
@@ -86,8 +86,8 @@
           $stmt->bindValue(':ville', $ville);
           $stmt->bindValue(':codepostal', $codepostal);
 
-          if ($stmt->execute()) { 
-              echo '<div class="alert alert-success" role="alert">Utilisateur ajouté avec succès!</div>';
+          if ($stmt->execute()) { // Exécute la requête
+              echo '<div class="alert alert-success" role="alert">Utilisateur ajouté avec succès!</div>'; // Affiche un message de succès
           } else {
               echo '<div class="alert alert-danger" role="alert">Erreur lors de l\'ajout de l\'utilisateur.</div>';
           }

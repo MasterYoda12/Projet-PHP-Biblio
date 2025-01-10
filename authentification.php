@@ -21,9 +21,9 @@ session_start();
 <?php
 
 if (!isset($_SESSION['loggedin'])) {  // Si l'utilisateur n'est pas connecté
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['connexion'])) {
-        $mel = $_POST['mel'];
-        $motdepasse = $_POST['motdepasse'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['connexion'])) { // Si le formulaire a été soumis et le bouton connexion a été cliqué
+        $mel = $_POST['mel']; // Récupère la valeur du champ mel
+        $motdepasse = $_POST['motdepasse']; // Récupère la valeur du champ motdepasse
 
         // Inclure le fichier de connexion à la base de données
         include 'connexion.php';
@@ -40,7 +40,7 @@ if (!isset($_SESSION['loggedin'])) {  // Si l'utilisateur n'est pas connecté
 
             if ($enregistrement) { // Si un enregistrement a été trouvé
                 $_SESSION['loggedin'] = true; // L'utilisateur est connecté
-                $_SESSION['mel'] = $enregistrement->mel;
+                $_SESSION['mel'] = $enregistrement->mel; // Enregistre l'identifiant de l'utilisateur
                 $_SESSION['nom'] = $enregistrement->nom;
                 $_SESSION['prenom'] = $enregistrement->prenom;
                 $_SESSION['adresse'] = $enregistrement->adresse;

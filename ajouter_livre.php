@@ -1,5 +1,5 @@
 <?php
-require_once('connexion.php');
+require_once('connexion.php'); 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Si le formulaire a été soumis
     $noauteur = $_POST['noauteur']; // Récupère la valeur du champ de recherche
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Si le formulaire a été soumis
     $dateajout = date('Y-m-d');
 
     $stmt = $connexion->prepare("INSERT INTO livre (noauteur, titre, isbn13, anneeparution, detail, photo, dateajout) VALUES (:noauteur, :titre, :isbn13, :anneeparution, :detail, :photo, :dateajout)");
-    $stmt->bindValue(':noauteur', $noauteur); // Lie le paramètre :noauteur à la valeur de $noauteur
+    $stmt->bindValue(':noauteur', $noauteur); // Lie le paramètre :noauteur à la valeur de $noauteur 
     $stmt->bindValue(':titre', $titre);
     $stmt->bindValue(':isbn13', $isbn13);
     $stmt->bindValue(':anneeparution', $anneeparution);
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Si le formulaire a été soumis
     $stmt->bindValue(':photo', $photo);
     $stmt->bindValue(':dateajout', $dateajout);
     
-    if ($stmt->execute()) { 
+    if ($stmt->execute()) { // Exécute la requête
         echo '<div class="alert alert-success" role="alert">Livre ajouté avec succès!</div>';
     } else {
         echo '<div class="alert alert-danger" role="alert">Erreur lors de l\'ajout du livre!.</div>';
@@ -67,9 +67,9 @@ $auteurs = $stmt->fetchAll();
                     require_once 'connexion.php';
                     $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur");
                     $stmt->execute();
-                    $auteurs = $stmt->fetchAll(PDO::FETCH_OBJ); // Récupère tous les résultats
-                    foreach ($auteurs as $auteur) { // Parcours les résultats
-                        echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>"; 
+                    $auteurs = $stmt->fetchAll(PDO::FETCH_OBJ); // Récupère tous les résultats dans un tableau d'objets 
+                    foreach ($auteurs as $auteur) { // Parcours les résultats 
+                        echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>";  // Affiche chaque auteur sous forme d'options dans la liste déroulante 
                     }
                     ?>
                 </select>

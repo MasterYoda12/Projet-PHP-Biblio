@@ -23,28 +23,28 @@
           </nav>
           <br>
           <?php
-          if (isset($_GET["numero"])) { // Si le numéro de livre est spécifié
-              $numero = $_GET["numero"]; // On récupère le numéro de livre
+          if (isset($_GET["numero"])) { // Si le numéro de livre est spécifié dans l'URL 
+              $numero = $_GET["numero"]; // On récupère le numéro de livre  
               require_once('connexion.php'); 
               $stmt = $connexion->prepare("SELECT prenom, nom, l.isbn13, l.detail FROM auteur a INNER JOIN livre l ON a.noauteur = l.noauteur WHERE nolivre = :numero");
               $stmt->bindValue(":numero", $numero); 
               $stmt->setFetchMode(PDO::FETCH_OBJ);
               $stmt->execute();
-              while($enregistrement = $stmt->fetch()) { // Parcours les résultats
-                  echo 'Auteur : ' . $enregistrement->prenom . ' ' . $enregistrement->nom . '<br>'; // Affiche le nom de l'auteur
-                  echo 'ISBN13 : ' . $enregistrement->isbn13 . '<br>'; // Affiche l'ISBN13
-                  echo 'Résumé du livre <br><br>'; // Affiche le résumé du livre
+              while($enregistrement = $stmt->fetch()) { // Parcours les résultats de la requête 
+                  echo 'Auteur : ' . $enregistrement->prenom . ' ' . $enregistrement->nom . '<br>'; // Affiche le nom de l'auteur 
+                  echo 'ISBN13 : ' . $enregistrement->isbn13 . '<br>'; // Affiche l'ISBN13 du livre 
+                  echo 'Résumé du livre <br><br>'; 
                   echo $enregistrement->detail . '<br>'; 
               }
-              if (isset($_SESSION['user_id'])) { // Si l'utilisateur est connecté
-                  echo '<button class="btn btn-success">Emprunter</button>'; // Affiche le bouton d'emprunt
+              if (isset($_SESSION['user_id'])) { // Si l'utilisateur est connecté 
+                  echo '<button class="btn btn-success">Emprunter</button>'; // Affiche le bouton d'emprunt 
               }
-              $stmt = $connexion->prepare("SELECT photo FROM livre WHERE nolivre = :numero"); // Prépare la requête
-              $stmt->bindValue(":numero", $numero); // Lie le paramètre :numero à la valeur de $numero
+              $stmt = $connexion->prepare("SELECT photo FROM livre WHERE nolivre = :numero"); // Prépare la requête 
+              $stmt->bindValue(":numero", $numero); // Lie le paramètre :numero à la valeur de $numero 
               $stmt->setFetchMode(PDO::FETCH_OBJ);
               $stmt->execute();
               while($enregistrement = $stmt->fetch()) {
-                  echo '<img src="covers/' . $enregistrement->photo . '" alt="Couverture du livre" class="d-block mx-auto" style="width:25%">'; // Affiche la couverture du livre
+                  echo '<img src="covers/' . $enregistrement->photo . '" alt="Couverture du livre" class="d-block mx-auto" style="width:25%">'; // Affiche la couverture du livre 
               }
           } else {
               echo 'Numéro de livre non spécifié.';
