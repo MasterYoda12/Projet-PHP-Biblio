@@ -4,7 +4,8 @@
       <input type="text" class="form-control" name="terme" placeholder="Rechercher un livre">
       <button class="btn btn-secondary mx-2" type="submit">Envoyer</button>
     </form>
-    <button class="btn btn-warning ml-2" type="button">Panier</button>
+    <form action="panier.php" method="get" class="ml-2">
+      <button class="btn btn-warning" type="submit">Panier</button>
+    </form>
   </div>
 </nav>
-

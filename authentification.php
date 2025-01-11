@@ -57,8 +57,8 @@ if (!isset($_SESSION['loggedin'])) {  // Si l'utilisateur n'est pas connecté
           } else {
               echo '<div class="alert alert-danger" role="alert">Echec à la connexion.</div>';
           }
-      } catch (PDOException $e) {
-          echo 'Erreur : ' . $e->getMessage();
+      } catch (PDOException $e) { // Gestion des erreurs de la requête SQL 
+          echo 'Erreur : ' . $e->getMessage(); // Affiche le message d'erreur 
         }
     } else {
         echo '<h2>Se connecter</h2>';

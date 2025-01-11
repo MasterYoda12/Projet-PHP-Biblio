@@ -62,17 +62,16 @@ $auteurs = $stmt->fetchAll();
         <h2>Ajouter un livre</h2>
         <form action="ajouter_livre.php" method="post">
             <div class="mb-3">
-                <select name="noauteur" class="form-control" id="noauteur">
-                    <?php
-                    require_once 'connexion.php';
-                    $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur");
-                    $stmt->execute();
-                    $auteurs = $stmt->fetchAll(PDO::FETCH_OBJ); // Récupère tous les résultats dans un tableau d'objets 
-                    foreach ($auteurs as $auteur) { // Parcours les résultats 
-                        echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>";  // Affiche chaque auteur sous forme d'options dans la liste déroulante 
-                    }
-                    ?>
-                </select>
+            <select name="noauteur" class="form-control" id="noauteur">
+                <?php
+                require_once 'connexion.php';
+                $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur");
+                $stmt->execute();
+                while ($auteur = $stmt->fetch(PDO::FETCH_OBJ)) { // Récupère chaque résultat un par un
+                    echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>";  // Affiche chaque auteur sous forme d'options dans la liste déroulante 
+                }
+                ?>
+            </select>
             </div>
             <div class="mb-3">
                 <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre">
