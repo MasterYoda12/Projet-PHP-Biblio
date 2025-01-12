@@ -26,12 +26,14 @@
           if (isset($_GET["numero"])) { // Si le numéro de livre est spécifié dans l'URL 
             $numero = $_GET["numero"]; // On récupère le numéro de livre  
             require_once('connexion.php'); 
-            $stmt = $connexion->prepare("SELECT prenom, nom, l.isbn13, l.detail, l.photo FROM auteur a INNER JOIN livre l ON a.noauteur = l.noauteur WHERE nolivre = :numero");
+            $stmt = $connexion->prepare("SELECT prenom, nom, l.titre, l.anneeparution, l.isbn13, l.detail, l.photo FROM auteur a INNER JOIN livre l ON a.noauteur = l.noauteur WHERE nolivre = :numero");
             $stmt->bindValue(":numero", $numero); 
             $stmt->setFetchMode(PDO::FETCH_OBJ);
             $stmt->execute();
             while($enregistrement = $stmt->fetch()) { // Parcours les résultats de la requête 
               echo 'Auteur : ' . $enregistrement->prenom . ' ' . $enregistrement->nom . '<br>'; // Affiche le nom de l'auteur 
+              echo 'Titre : ' . $enregistrement->titre . '<br>'; // Affiche le titre du livre 
+              echo 'Année de parution : ' . $enregistrement->anneeparution . '<br>'; // Affiche l'année de parution du livre 
               echo 'ISBN13 : ' . $enregistrement->isbn13 . '<br>'; // Affiche l'ISBN13 du livre 
               echo 'Résumé du livre <br><br>'; 
               echo $enregistrement->detail . '<br>';  
@@ -53,7 +55,8 @@
   <?php
 if (isset($_SESSION['loggedin']) && $_SESSION['profil'] == 'client') { // Si l'utilisateur est connecté et est un client 
     echo '<div style="position: fixed; bottom: 10px; left: 10px;"> 
-            <form action="panier.php" method="post">
+            <form action="panier.php" method="post"> 
+                <input type="hidden" name="numero" value="' . $numero . '">
                 <button type="submit" class="btn btn-success">Emprunter</button>
             </form>
           </div>';
