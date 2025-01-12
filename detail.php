@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>Titre de la page</title>
+  <title>Detail</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="styles.css"/>
@@ -16,8 +16,8 @@
           <br>
           <br>
           <nav class="navbar navbar-dark bg-blue">
-            <form class="d-flex w-100" action="lister_livre.php" method="get">
-              <input type="text" class="form-control me-2" name="terme" placeholder="Rechercher un auteur">
+            <form class="d-flex w-100" action="lister_livre.php" method="get"> 
+              <input type="text" class="form-control me-2" name="terme" placeholder="Rechercher un auteur"> 
               <button class="btn btn-primary" type="submit">Envoyer</button>
             </form>
           </nav>
@@ -28,7 +28,7 @@
             require_once('connexion.php'); 
             $stmt = $connexion->prepare("SELECT prenom, nom, l.titre, l.anneeparution, l.isbn13, l.detail, l.photo FROM auteur a INNER JOIN livre l ON a.noauteur = l.noauteur WHERE nolivre = :numero");
             $stmt->bindValue(":numero", $numero); 
-            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $stmt->setFetchMode(PDO::FETCH_OBJ); // Indique qu'on veut que les résultats soient des objets 
             $stmt->execute();
             while($enregistrement = $stmt->fetch()) { // Parcours les résultats de la requête 
               echo 'Auteur : ' . $enregistrement->prenom . ' ' . $enregistrement->nom . '<br>'; // Affiche le nom de l'auteur 
@@ -56,7 +56,7 @@
 if (isset($_SESSION['loggedin']) && $_SESSION['profil'] == 'client') { // Si l'utilisateur est connecté et est un client 
     echo '<div style="position: fixed; bottom: 10px; left: 10px;"> 
             <form action="panier.php" method="post"> 
-                <input type="hidden" name="numero" value="' . $numero . '">
+                <input type="hidden" name="numero" value="' . $numero . '"> 
                 <button type="submit" class="btn btn-success">Emprunter</button>
             </form>
           </div>';

@@ -8,35 +8,35 @@
       </h6>
       <br><br>
       <?php include 'entete.php';?> 
-      <h2 class="text-success text-center my-4">Votre Panier</h2>
+      <h2 class="text-success text-center my-4">Votre Panier</h2> /
       <?php
       
       require_once('connexion.php'); 
 
 
-      if (isset($_POST['numero'])) { // vérifie si le numéro est envoyé via un POST 
-          $numero = $_POST['numero']; // récupère le numéro du livre envoyé
+      if (isset($_POST['numero'])) { // vérifie si le numéro est envoyé via un POST  
+          $numero = $_POST['numero']; // récupère le numéro du livre envoyé via un POST
 
           $stmt = $connexion->prepare("SELECT prenom, nom, l.titre, l.anneeparution, l.isbn13, l.detail, l.photo, l.nolivre FROM auteur a INNER JOIN livre l ON a.noauteur = l.noauteur WHERE nolivre = :numero");
           $stmt->bindValue(":numero", $numero); // lie le numéro du livre à la requête SQL
           $stmt->setFetchMode(PDO::FETCH_OBJ);
           $stmt->execute();
 
-          if ($enregistrement = $stmt->fetch()) {  // si un enregistrement est trouvé
-            echo '<div class="text-center" style="display: flex; justify-content: center; align-items: center;">';
+          if ($enregistrement = $stmt->fetch()) {  // si un enregistrement est trouvé 
+            echo '<div class="text-center" style="display: flex; justify-content: center; align-items: center;">'; 
             echo '<div>';
             echo $enregistrement->prenom . ' ' . $enregistrement->nom . ' - '; // afiche le nom de l'auteur 
-            echo $enregistrement->titre . ' (' . $enregistrement->anneeparution . ')';
+            echo $enregistrement->titre . ' (' . $enregistrement->anneeparution . ')'; // affiche le titre et l'année de parution du livre 
             echo '</div>';
-            echo '<form method="post" action="vider_panier.php" style="margin-left: 10px;">';
+            echo '<form method="post" action="vider_panier.php" style="margin-left: 10px;">'; // formulaire pour vider le panier
             echo '<button type="submit">Annuler</button>';
             echo '</form>';
             echo '</div>';
         }
         }
       ?>
-      <form method="post" action="valider_panier.php" class="text-center my-4">
-        <button type="submit" class="btn btn-success">Valider Panier</button>
+      <form method="post" action="valider_panier.php" class="text-center my-4"> // formulaire pour valider le panier
+        <button type="submit" class="btn btn-success">Valider Panier</button> // bouton pour valider le panier 
       </form>
     </div>
     <div class="col-sm-3">
