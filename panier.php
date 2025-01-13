@@ -16,7 +16,6 @@
 
       if (isset($_POST['numero'])) { // vérifie si le numéro est envoyé via un POST  
           $numero = $_POST['numero']; // récupère le numéro du livre envoyé via un POST
-
           $stmt = $connexion->prepare("SELECT prenom, nom, l.titre, l.anneeparution, l.isbn13, l.detail, l.photo, l.nolivre FROM auteur a INNER JOIN livre l ON a.noauteur = l.noauteur WHERE nolivre = :numero");
           $stmt->bindValue(":numero", $numero); // lie le numéro du livre à la requête SQL
           $stmt->setFetchMode(PDO::FETCH_OBJ);
@@ -25,11 +24,11 @@
           if ($enregistrement = $stmt->fetch()) {  // si un enregistrement est trouvé 
             echo '<div class="text-center" style="display: flex; justify-content: center; align-items: center;">'; 
             echo '<div>';
-            echo $enregistrement->prenom . ' ' . $enregistrement->nom . ' - '; // afiche le nom de l'auteur 
+            echo $enregistrement->prenom . ' ' . $enregistrement->nom . ' - '; // afiche le nom de l'auteur
             echo $enregistrement->titre . ' (' . $enregistrement->anneeparution . ')'; // affiche le titre et l'année de parution du livre 
             echo '</div>';
             echo '<form method="post" action="vider_panier.php" style="margin-left: 10px;">'; // formulaire pour vider le panier
-            echo '<button type="submit">Annuler</button>';
+            echo '<button type="submit">Annuler</button>'; 
             echo '</form>';
             echo '</div>';
         }

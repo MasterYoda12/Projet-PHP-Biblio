@@ -65,8 +65,7 @@
         </div>
 </div>
       <?php
-    
-      if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
+      if (isset($_POST['mel'])) { // Vérifie si le formulaire a été soumis
           require_once 'connexion.php'; 
 
           $mel = $_POST['mel']; // Récupère la valeur du champ de recherche

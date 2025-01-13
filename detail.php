@@ -51,6 +51,7 @@
         <?php include 'authentification.php';?>
       </div>
     </div>
+    
   </div>
   <?php
 if (isset($_SESSION['loggedin']) && $_SESSION['profil'] == 'client') { // Si l'utilisateur est connecté et est un client 

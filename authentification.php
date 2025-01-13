@@ -21,7 +21,7 @@ session_start();
 <?php
 
 if (!isset($_SESSION['loggedin'])) {  // Si l'utilisateur n'est pas connecté
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['connexion'])) { // Si le formulaire a été soumis et le bouton connexion a été cliqué
+    if (isset($_POST['connexion'])) { // Si le formulaire a été soumis et le bouton connexion a été cliqué
         $mel = $_POST['mel']; // Récupère la valeur du champ mel
         $motdepasse = $_POST['motdepasse']; // Récupère la valeur du champ motdepasse
 
