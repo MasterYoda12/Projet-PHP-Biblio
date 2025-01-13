@@ -63,18 +63,22 @@ $auteurs = $stmt->fetchAll();
         <form action="ajouter_livre.php" method="post">
             <div class="mb-3">
             <select name="noauteur" class="form-control" id="noauteur">
+                
                 <?php
                 require_once 'connexion.php';
                 $stmt = $connexion->prepare("SELECT noauteur, nom, prenom FROM auteur");
                 $stmt->execute();
                 while ($auteur = $stmt->fetch(PDO::FETCH_OBJ)) { // Récupère chaque résultat un par un
-                    echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>";  // Affiche chaque auteur sous forme d'options dans la liste déroulante 
+                    echo "<option value='{$auteur->noauteur}'>{$auteur->prenom} {$auteur->nom}</option>"; 
+                     // Affiche chaque auteur sous forme d'options dans la liste déroulante 
                 }
                 ?>
+                
             </select>
             </div>
             <div class="mb-3">
                 <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre">
+                
             </div>
             <div class="mb-3">
                 <input type="text" name="isbn13" class="form-control" id="isbn13" placeholder="ISBN13">
@@ -90,13 +94,18 @@ $auteurs = $stmt->fetchAll();
             </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
+        
     </div>
     <div class="col-sm-3">
         <img src="biblio.jpg" width="300px" height="350px" alt="biblio">
         <br><br>
         <?php include 'authentification.php';?>
     </div>
+    
 </div>
+<form method="post" action="ajouter_auteur.php" class="text-center my-4"> 
+        <button type="submit" class="btn btn-success">Ajouter Auteur</button> 
+</form>
   </div>
 </div>
 </body>

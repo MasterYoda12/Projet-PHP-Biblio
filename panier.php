@@ -8,7 +8,7 @@
       </h6>
       <br><br>
       <?php include 'entete.php';?> 
-      <h2 class="text-success text-center my-4">Votre Panier</h2> /
+      <h2 class="text-success text-center my-4">Votre Panier</h2> 
       <?php
       
       require_once('connexion.php'); 
@@ -35,8 +35,8 @@
         }
         }
       ?>
-      <form method="post" action="valider_panier.php" class="text-center my-4"> // formulaire pour valider le panier
-        <button type="submit" class="btn btn-success">Valider Panier</button> // bouton pour valider le panier 
+      <form method="post" action="valider_panier.php" class="text-center my-4">
+        <button type="submit" class="btn btn-success">Valider Panier</button>  
       </form>
     </div>
     <div class="col-sm-3">
