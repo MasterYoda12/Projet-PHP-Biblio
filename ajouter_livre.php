@@ -1,5 +1,7 @@
 <?php
 require_once('connexion.php'); 
+//if ($enregistrement->profil !== 'admin') {
+  //  echo "Erreur"} else {}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Si le formulaire a été soumis
     $noauteur = $_POST['noauteur']; // Récupère la valeur du champ de recherche
@@ -110,3 +112,4 @@ $auteurs = $stmt->fetchAll();
 </div>
 </body>
 </html>
+

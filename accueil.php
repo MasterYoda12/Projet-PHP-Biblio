@@ -21,7 +21,7 @@
       <br><br>
       <?php include 'entete.php';?>
       <br>
-      <h4><p class="text-center"> Dernière acquisition</p> </h4> 
+      <h4><p class="text-center">Nos Dernières acquisitions</p> </h4> 
       <br>
       <?php
       include 'carrousel.php';

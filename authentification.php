@@ -62,14 +62,14 @@ if (!isset($_SESSION['loggedin'])) {  // Si l'utilisateur n'est pas connecté
         }
     } else {
         echo '<h2>Se connecter</h2>';
-        echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post" class="mb-3">  
+        echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post" class="mb-3">   
                 <div class="mb-3">
                   <label for="mel" class="form-label">Identifiant:</label>
-                  <input type="text" name="mel" class="form-control" id="mel" />
+                  <input type="email" name="mel" class="form-control" id="mel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
                 </div>
                 <div class="mb-3">
                   <label for="motdepasse" class="form-label">Mot de passe:</label>
-                  <input type="password" name="motdepasse" class="form-control" id="motdepasse" />
+                  <input type="password" name="motdepasse" class="form-control" id="motdepasse" pattern=".{4,}"/>
                 </div>
                 <button type="submit" name="connexion" class="btn btn-primary">Connexion</button>
               </form>';

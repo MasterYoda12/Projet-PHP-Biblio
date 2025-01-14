@@ -24,8 +24,7 @@
           if ($enregistrement = $stmt->fetch()) {  // si un enregistrement est trouvé 
             echo '<div class="text-center" style="display: flex; justify-content: center; align-items: center;">'; 
             echo '<div>';
-            echo $enregistrement->prenom . ' ' . $enregistrement->nom . ' - '; // afiche le nom de l'auteur
-            echo $enregistrement->titre . ' (' . $enregistrement->anneeparution . ')'; // affiche le titre et l'année de parution du livre 
+            echo $enregistrement->prenom . ' ' . $enregistrement->nom . ' - ' . $enregistrement->titre . ' (' . $enregistrement->anneeparution . ')';
             echo '</div>';
             echo '<form method="post" action="vider_panier.php" style="margin-left: 10px;">'; // formulaire pour vider le panier
             echo '<button type="submit">Annuler</button>'; 
