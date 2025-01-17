@@ -1,4 +1,14 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) { // vérifie si la session n'est pas démarrée (Utilisation d'internet car problème de session_start())
+  session_start();
+}
+    if ($_SESSION['profil'] != 'admin') { // vérifie si le profil de l'utilisateur n'est pas admin
+        header("Location: accueil.php");
+    }
+
+?>
+
+<?php
 require_once('connexion.php'); 
 //if ($enregistrement->profil !== 'admin') {
   //  echo "Erreur"} else {}

@@ -1,3 +1,12 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) { // vérifie si la session n'est pas démarrée (Utilisation d'internet car problème de session_start())
+  session_start();
+}
+    if ($_SESSION['profil'] != 'admin') { // vérifie si le profil de l'utilisateur n'est pas admin
+        header("Location: accueil.php");
+    }
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
